@@ -11,8 +11,9 @@
             freeze = [];
 
         this.each(function() {
-            var parent = $(this);
-            if (parent.find('thead').length === 0) {
+            var parent = $(this),
+                thead = parent.find('thead');
+            if (thead.length === 0) {
                 console.log('there is no <thead>');
                 return false;
             }
@@ -22,16 +23,22 @@
             cloneNode.css({
                 left : offset.left,
                 top : opts.marginTop,
+                width : parent.width(),
                 display : 'none',
                 position : 'fixed'
             })
             .removeAttr('id')
                 .children(':not(thead)').remove();
 
+            var allChildren = thead.find('*');
+            $.each(cloneNode.find('thead *'), function(i) {
+                $(this).width(allChildren.eq(i).width());
+            });
+
             freeze.push({
                 node : cloneNode,
                 offset : offset,
-                height : parent.find(opts.selector).height(),
+                height : thead.height(),
                 parentHeight : parent.height()
             });
 
@@ -47,13 +54,11 @@
             $.each(freeze, function(i, f) {
                 var bottom = f.offset.top + f.parentHeight,
                     freezeLimit = bottom - f.height;
+
                 if (sTop > f.offset.top && sTop <= freezeLimit) {
-                    f.node.css({'position' : 'fixed', 'top' : opts.marginTop, 'display' : 'table'});
+                    f.node.css({position : 'fixed', top : opts.marginTop, display : 'table'});
                 } else if ((sTop > freezeLimit && sTop <= bottom)) {
-                    f.node.css({
-                        'position' : 'absolute',
-                        'top' : freezeLimit
-                    }).show();
+                    f.node.css({position : 'absolute', top : freezeLimit, display : 'table'});
                 } else {
                     f.node.hide();
                 }

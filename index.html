@@ -8,7 +8,7 @@
                 font:12px/1.5 'Segoe UI','Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
             table {
-                max-width: 100%;
+                width: 100%;
                 background-color: transparent;
                 border-collapse: collapse;
                 border-spacing: 0;
@@ -24,9 +24,6 @@
                 border-top: 1px solid #ddd;
              }
         </style>
-        <!--[if lt IE 9]>
-          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
     </head>
     <body>
 
@@ -34,45 +31,39 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Product</th>
+          <th>Payment Taken</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>TB - Monthly</td>
+          <td>01/04/2012</td>
+          <td>Approved</td>
         </tr>
         <tr>
           <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td>TB - Monthly</td>
+          <td>02/04/2012</td>
+          <td>Declined</td>
         </tr>
         <tr>
           <td>3</td>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+          <td>TB - Monthly</td>
+          <td>03/04/2012</td>
+          <td>Pending</td>
         </tr>
         <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td>4</td>
+          <td>TB - Monthly</td>
+          <td>04/04/2012</td>
+          <td>Call in to confirm</td>
         </tr>
       </tbody>
     </table>
-
+    <br /><br />
     <table class="table">
       <thead>
         <tr>
@@ -194,10 +185,12 @@
       </tbody>
     </table>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <script src="jquery.freeze.js"></script>
-        <script>
-        $('.table').freeze({selector:'thead',marginTop:0});
-        </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="jquery.freeze.js"></script>
+    <script>
+    window.onload = function() {
+      $('.table').freeze({marginTop:0});
+    }
+    </script>
     </body>
 </html>
